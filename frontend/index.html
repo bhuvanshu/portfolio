@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhuvanshu | Portfolio</title>
+  <meta name="description" content="Bhuvanshu - Full Stack Developer (React, Node.js) Portfolio" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <canvas id="galaxy-bg"></canvas>
+
+  <!-- Navbar -->
+  <header class="header">
+    <nav class="nav container">
+      <a href="#home" class="logo"><span class="profile-icon">B</span> Bhuvanshu Singh</a>
+
+      <button class="nav__toggle" id="menuToggle" aria-label="Open menu">
+        ☰
+      </button>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#home" class="nav__link">Home</a></li>
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#skills" class="nav__link">Skills</a></li>
+        <li><a href="#projects" class="nav__link">Projects</a></li>
+        <li><a href="#resume" class="nav__link">Resume</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+
+        <li>
+          <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+            <span id="themeIcon">🌙</span>
+            <span class="theme-btn__text" id="themeText">Dark</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main>
+
+    <!-- Hero -->
+    <section class="hero container" id="home">
+      <div class="hero__left">
+        <p class="badge">Final Year CSE • Backend Developer</p>
+        <h1 class="hero__title">Hi, I’m <span class="accent">Bhuvanshu</span></h1>
+        <p class="hero__subtitle">
+         I build scalable backend systems using <strong>Java & Spring Boot</strong> and
+         develop data-driven applications integrating <strong>Machine Learning models</strong>.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn outline" href="#contact">Contact Me</a>
+        </div>
+
+        <div class="hero__meta">
+          <div class="meta-card">
+            <p class="meta-title">Focus</p>
+            <p class="meta-value">Web Dev + Practical AI</p>
+          </div>
+          
+          <div class="meta-card">
+            <p class="meta-title">Stack</p>
+            <p class="meta-value">Java • Spring Boot • REST APIs</p>
+            <p>Python • ML Integration</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="profile-card">
+          <div class="profile-img">
+          
+            <img src="assets/image.jpg" alt="Bhuvanshu profile photo" onerror="this.style.display='none'" />
+            <div class="profile-placeholder" id="profilePlaceholder">
+              <span>B</span>
+            </div>
+          </div>
+          <div class="profile-info">
+            <h3>Bhuvanshu Singh</h3>
+            <p>Java Backend Developer</p>
+            <div class="profile-links">
+  <a href="https://github.com/bhuvanshu"
+     target="_blank"
+     rel="noopener noreferrer">
+     GitHub
+  </a>
+
+  <a href="https://www.linkedin.com/in/bhuvanshu-singh/"
+     target="_blank"
+     rel="noopener noreferrer">
+     LinkedIn
+  </a>
+</div>
+          </div>
+        </div>
+
+        <div class="note-card">
+  <h4>What I Deliver</h4>
+
+  <ul>
+    <li>Scalable backend systems using Java & Spring Boot</li>
+    <li>REST API development with secure authentication</li>
+    <li>Database-driven applications & workflow platforms</li>
+  </ul>
+</div>
+      </div>
+    </section>
+
+    <!-- About -->
+   <section class="section container" id="about">
+
+  <div class="section-head">
+    <h2>About</h2>
+  </div>
+
+  <div class="grid-2">
+
+    
+    <div class="card">
+      <h3>Who I Am</h3>
+
+      <p>
+        I’m a final-year Computer Science student specializing in backend
+        engineering and system-oriented software development. My primary
+        focus is on building scalable REST APIs, database-driven platforms,
+        and structured enterprise applications using Java and Spring Boot.
+      </p>
+
+      <p>
+        I enjoy working on workflow-based systems such as portals,
+        dashboards, and management platforms that solve real operational
+        problems and demonstrate production-level architecture.
+      </p>
+    </div>
+
+    
+    <div class="card">
+      <h3>My Goal</h3>
+
+      <p>
+        I’m preparing for higher studies in Germany while building a
+        portfolio that reflects strong backend engineering fundamentals,
+        clean architecture practices, and deployable software systems.
+      </p>
+
+      <p>
+        My long-term focus lies in developing enterprise platforms and
+        integrating data-driven intelligence into scalable backend
+        infrastructures.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+    
+<section class="section container" id="skills">
+
+  <div class="section-head">
+    <h2>Technical Skills</h2>
+  </div>
+
+  <div class="skills-grid">
+
+    
+    <div class="card">
+      <h3>Backend Development</h3>
+      <p>
+        Java, Spring Boot, REST API Development, Spring MVC,
+        Spring Data JPA
+      </p>
+    </div>
+
+    
+    <div class="card">
+      <h3>Databases</h3>
+      <p>
+        MySQL, MongoDB, JDBC, Database Design
+      </p>
+    </div>
+
+    
+    <div class="card">
+      <h3>AI & Data Analysis</h3>
+      <p>
+        Python, Pandas, Scikit-learn, PCA,
+        Predictive Modeling
+      </p>
+    </div>
+
+    
+    <div class="card">
+      <h3>API & Deployment</h3>
+      <p>
+        FastAPI / Flask, Model APIs,
+        Docker (Basics)
+      </p>
+    </div>
+
+    
+    <div class="card">
+      <h3>Tools & Workflow</h3>
+      <p>
+        Git, GitHub,
+        IntelliJ, VS Code
+      </p>
+    </div>
+
+    
+    <div class="card">
+      <h3>Frontend (Supporting)</h3>
+      <p>
+        HTML, CSS, JavaScript,
+        Responsive Design
+      </p>
+    </div>
+
+  </div>
+<!-- Certifications Subsection -->
+<section class="certifications-section">
+
+  <div class="certifications">
+
+    <div class="section-head">
+      <h2>Certifications</h2>
+    
+    </div>
+     
+    <div class="certifications-container">
+    
+      <!-- Certificate 1 -->
+      <div class="cert-card">
+        <img src="assets/certificates/JAVA HACKERANK.png"
+             alt="Basic Java Certification"
+             class="cert-img">
+        <div class="cert-title">Basic Java Certification</div>
+      </div>
+
+      <!-- Certificate 2 -->
+      <div class="cert-card">
+        <img src="assets/certificates/BHUVANSHU-Python.jpg"
+             alt="Python Certification"
+             class="cert-img">
+        <div class="cert-title">Python</div>
+      </div>
+
+      <!-- Certificate 3 -->
+      <div class="cert-card">
+        <img src="assets/certificates/BHUVANSHU-Linux.jpg"
+             alt="Linux Certification"
+             class="cert-img">
+        <div class="cert-title">Linux</div>
+      </div>
+
+      <!-- Certificate 4 -->
+      <div class="cert-card">
+        <img src="assets/certificates/GIT Internshala.png"
+             alt="Git Certification"
+             class="cert-img">
+        <div class="cert-title">Git & GitHub</div>
+      </div>
+
+      <!-- Certificate 5 -->
+      <div class="cert-card">
+        <img src="assets/certificates/Applied AI EU.jpg"
+             alt="Applied AI Certification"
+             class="cert-img">
+        <div class="cert-title">Applied AI</div>
+      </div>
+
+      <!-- Certificate 6 -->
+      <div class="cert-card">
+        <img src="assets/certificates/HTML CSS Internshala.jpg"
+             alt="HTML & CSS Certification"
+             class="cert-img">
+        <div class="cert-title">HTML & CSS</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+    <!-- Projects -->
+<section class="projects-section" id="projects">
+
+  <div class="projects-head-wrapper">
+    <div class="section-head">
+      <h2>Projects</h2>
+          </div>
+  </div>
+
+  <div class="projects-container">
+    <div class="projects-grid">
+
+    <!-- Placement Portal -->
+    <article class="project card">
+
+      <div class="project-top">
+        <h3>Smart Placement Portal</h3>
+        <span class="tag">In Development</span>
+      </div>
+
+      <p class="project-desc">
+        A backend-driven workflow platform designed for colleges to manage
+        student placement records, company drives, applications, and
+        administrative analytics through structured role-based access.
+      </p>
+
+      <div class="project-tech">
+        <span>Java</span>
+        <span>Spring Boot</span>
+        <span>MySQL</span>
+        <span>REST APIs</span>
+      </div>
+
+      <div class="project-actions">
+        <a class="btn small outline" href="https://github.com/bhuvanshu"
+           target="_blank" rel="noreferrer">
+           GitHub
+        </a>
+        <a class="btn small primary" href="#"
+           target="_blank" rel="noreferrer">
+           Live Demo
+        </a>
+      </div>
+
+    </article>
+
+    <!-- Depression Analysis -->
+    <article class="project card">
+
+      <div class="project-top">
+        <h3>Student Depression Risk Analysis</h3>
+        <span class="tag">Research</span>
+      </div>
+
+      <p class="project-desc">
+        A machine learning research system analyzing psychological,
+        academic, and lifestyle indicators to identify depression
+        risk levels using PCA, correlation mapping, and predictive models.
+      </p>
+
+      <div class="project-tech">
+        <span>Python</span>
+        <span>Machine Learning</span>
+        <span>Pandas</span>
+        <span>Scikit-learn</span>
+      </div>
+
+      <div class="project-actions">
+        <a class="btn small outline" href="https://github.com/bhuvanshu/Depression-Analysis-using-ML"
+           target="_blank" rel="noreferrer">
+           GitHub
+        </a>
+        <a class="btn small primary" href="https://iipseries.org/fullviewdetails.php?id=1935&title=iip-v3-2025-bs-21-235-data-mining-in-the-era-of-big-data-and-ai"
+           target="_blank" rel="noreferrer">
+           Research Paper
+        </a>
+      </div>
+
+    </article>
+
+    <!-- Portfolio -->
+    <article class="project card">
+
+      <div class="project-top">
+        <h3>Developer Portfolio Platform</h3>
+        <span class="tag">Live</span>
+      </div>
+
+      <p class="project-desc">
+        A responsive personal portfolio platform showcasing backend
+        systems, research projects, certifications, and deployable
+        software builds with structured UI and modular architecture.
+      </p>
+
+      <div class="project-tech">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+      </div>
+
+      <div class="project-actions">
+        <a class="btn small outline" href="https://github.com/bhuvanshu/portfolio"
+           target="_blank" rel="noreferrer">
+           GitHub
+        </a>
+        <a class="btn small primary" href="#"
+           target="_blank" rel="noreferrer">
+           Live Site
+        </a>
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+    <!-- Resume -->
+    <section class="resume-section" id="resume">
+      <div class="resume-head-wrapper">
+        <div class="section-head">
+          <h2>Resume</h2>
+                  </div>
+      </div>
+
+      <div class="resume-container">
+        <div class="card resume-card">
+        <p>
+          Download my resume here:
+        </p>
+        <div class="resume-actions">
+          <a class="btn primary" href="assets/resume.pdf" download>Download CV</a>
+          <a class="btn outline" href="#contact">Request Updated CV</a>
+        </div>
+      
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+      <div class="contact-head-wrapper">
+        <div class="section-head">
+          <h2>Contact</h2>
+                </div>
+      </div>
+
+      <div class="contact-container">
+        <div class="grid-2">
+        <div class="card">
+          <h3>Reach out to me</h3>
+         
+          <div class="contact-links">
+            <a href="https://mail.google.com/mail/?view=cm&to=bhuvanshusingh@gmail.com"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="contact-icon">
+
+    <img src="assets/gmail.png"
+         alt="Gmail"
+         class="icon-img">
+  </a>
+
+             <a href="https://github.com/bhuvanshu"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="contact-icon">
+
+    <img src="assets/github.png"
+         alt="GitHub"
+         class="icon-img">
+  </a>
+              <a href="https://www.linkedin.com/in/bhuvanshu-singh/"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="contact-icon">
+
+    <img src="assets/linkedin.png"
+         alt="LinkedIn"
+         class="icon-img">
+  </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Quick message</h3>
+          <form class="form" onsubmit="return false;">
+            <div class="form-row">
+              <label>Name</label>
+              <input type="text" placeholder="Your name" />
+            </div>
+            <div class="form-row">
+              <label>Email</label>
+              <input type="email" placeholder="your@email.com" />
+            </div>
+            <div class="form-row">
+              <label>Message</label>
+              <textarea rows="4" placeholder="Write your message..."></textarea>
+            </div>
+
+            <button class="btn primary" type="button" id="fakeSendBtn">
+              Send Message
+            </button>
+            
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer container">
+    <p class="muted">© <span id="year"></span> Bhuvanshu • Built with HTML, CSS & JavaScript</p>
+  </footer>
+
+  <!-- Certificate Modal Viewer -->
+  <div id="certModal" class="cert-modal">
+    <span class="cert-close">&times;</span>
+    <img class="cert-modal-content" id="certModalImg">
+  </div>
+
+  <script src="js/profile-hover.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
