@@ -1,9 +1,26 @@
 // Theme toggle functionality
-(function() {
+(function () {
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = document.getElementById('themeIcon');
   const themeText = document.getElementById('themeText');
   const html = document.documentElement;
+
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+  }
 
   // Function to set theme
   function setTheme(theme) {
@@ -27,7 +44,7 @@
   }
 
   // Initialize theme on load
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  const savedTheme = localStorage.getItem('theme') || 'dark';
   setTheme(savedTheme);
 
   // Add event listener to toggle button
@@ -41,13 +58,6 @@
     yearElement.textContent = new Date().getFullYear();
   }
 
-  // Handle fake send button (optional)
-  const fakeSendBtn = document.getElementById('fakeSendBtn');
-  if (fakeSendBtn) {
-    fakeSendBtn.addEventListener('click', function() {
-      alert('Form submitted! (This is a demo - no backend connected)');
-    });
-  }
 
   // Galaxy background animation
   const canvas = document.getElementById('galaxy-bg');
@@ -63,7 +73,7 @@
   function createParticle() {
     const types = ['star', 'meteor', 'comet'];
     const type = types[Math.floor(Math.random() * types.length)];
-    
+
     let particle = {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -112,7 +122,7 @@
     particles.forEach(p => {
       ctx.save();
       ctx.globalAlpha = p.opacity;
-      
+
       if (p.type === 'star') {
         ctx.fillStyle = '#ffffff';
         ctx.beginPath();
@@ -137,7 +147,7 @@
         ctx.shadowBlur = 5;
         ctx.stroke();
       }
-      
+
       ctx.restore();
     });
   }
@@ -160,41 +170,39 @@
   });
 
 })();
- 
+
 // Load Certificate hover functionality
 const certContainer = document.querySelector(".certifications-container");
 
-let scrollSpeed = 0;
+if (certContainer) {
+  let scrollSpeed = 0;
 
-certContainer.addEventListener("mousemove", (e) => {
+  certContainer.addEventListener("mousemove", (e) => {
+    const rect = certContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const width = rect.width;
+    const edgeZone = 120;
 
-  const rect = certContainer.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const width = rect.width;
+    if (x < edgeZone) {
+      scrollSpeed = -6;
+    } else if (x > width - edgeZone) {
+      scrollSpeed = 6;
+    } else {
+      scrollSpeed = 0;
+    }
+  });
 
-  const edgeZone = 120; // px from edges
-
-  if (x < edgeZone) {
-    scrollSpeed = -6; // scroll left
-  }
-  else if (x > width - edgeZone) {
-    scrollSpeed = 6; // scroll right
-  }
-  else {
+  certContainer.addEventListener("mouseleave", () => {
     scrollSpeed = 0;
+  });
+
+  function autoScroll() {
+    certContainer.scrollLeft += scrollSpeed;
+    requestAnimationFrame(autoScroll);
   }
-});
 
-certContainer.addEventListener("mouseleave", () => {
-  scrollSpeed = 0;
-});
-
-function autoScroll() {
-  certContainer.scrollLeft += scrollSpeed;
-  requestAnimationFrame(autoScroll);
+  autoScroll();
 }
-
-autoScroll();
 
 // Certificate Modal Functionality
 const modal = document.getElementById("certModal");

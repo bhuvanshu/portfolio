@@ -52,5 +52,3 @@ Deployed using **GitHub Pages**.
 ---
 
 © 2026 Bhuvanshu — All rights reserved.
-
-
