@@ -16,8 +16,7 @@ import org.springframework.test.context.TestPropertySource;
 		"spring.mail.port=587",
 		"spring.mail.username=test@test.com",
 		"spring.mail.password=testpassword",
-		"admin.key=test-admin-key",
-		"frontend.origin=http://localhost:3000"
+		"admin.key=test-admin-key"
 })
 class PortfolioBackendApplicationTests {
 
