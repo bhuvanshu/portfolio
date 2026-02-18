@@ -253,8 +253,7 @@ async function sendMessage() {
   const data = { name, email, message };
 
   try {
-
-    const res = await fetch("http://localhost:8080/api/contact", {
+    const res = await fetch("https://your-url.up.railway.app/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -262,28 +261,18 @@ async function sendMessage() {
       body: JSON.stringify(data)
     });
 
-    // ---------- Backend response handling ----------
-    if (res.ok) {
-
-      alert("Message Sent Successfully ✅");
-
-      document.getElementById("contactForm").reset();
-
-    } else if (res.status === 400) {
-
-      alert("Invalid input ❌ Check fields again");
-
-    } else {
-
-      alert("Server error ⚠️ Try later");
-
+    if (!res.ok) {
+      const err = await res.json();
+      alert("Submission failed ❌\n" + (err.message || "Unknown error"));
+      return;
     }
 
-  } catch (error) {
+    alert("Message sent successfully ✅");
+    document.getElementById("contactForm").reset();
 
+  } catch (error) {
     console.error(error);
     alert("Backend not reachable ❌");
-
   }
 }
 

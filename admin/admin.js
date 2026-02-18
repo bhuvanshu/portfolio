@@ -1,3 +1,4 @@
+const BASE_URL = "https://your-url.up.railway.app";
 let ADMIN_KEY = "";
 
 // ---------- Toast helper ----------
@@ -27,7 +28,7 @@ function login() {
     return;
   }
 
-  fetch("http://localhost:8080/api/contact", {
+  fetch(`${BASE_URL}/api/contact`, {
     method: "GET",
     headers: { "X-ADMIN-KEY": ADMIN_KEY }
   })
@@ -49,7 +50,7 @@ function login() {
 
 // ---------- Load contacts ----------
 function loadContacts() {
-  fetch("http://localhost:8080/api/contact", {
+  fetch(`${BASE_URL}/api/contact`, {
     method: "GET",
     headers: { "X-ADMIN-KEY": ADMIN_KEY }
   })
@@ -109,7 +110,7 @@ function populateTable(data) {
 function deleteContact(id) {
   if (!confirm("Delete this message?")) return;
 
-  fetch(`http://localhost:8080/api/contact/${id}`, {
+  fetch(`${BASE_URL}/api/contact/${id}`, {
     method: "DELETE",
     headers: { "X-ADMIN-KEY": ADMIN_KEY }
   })
