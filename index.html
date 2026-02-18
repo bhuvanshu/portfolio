@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bhuvanshu | Portfolio</title>
   <meta name="description" content="Bhuvanshu - Full Stack Developer (React, Node.js) Portfolio" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="frontend/css/style.css" />
 </head>
 
 <body>
@@ -75,7 +75,7 @@
         <div class="profile-card">
           <div class="profile-img">
 
-            <img src="assets/Image.jpg" alt="Bhuvanshu profile photo" onerror="this.style.display='none'" />
+            <img src="frontend/assets/Image.jpg" alt="Bhuvanshu profile photo" onerror="this.style.display='none'" />
             <div class="profile-placeholder" id="profilePlaceholder">
               <span>B</span>
             </div>
@@ -230,37 +230,38 @@
 
           <!-- Certificate 1 -->
           <div class="cert-card">
-            <img src="assets/certificates/JAVA HACKERANK.png" alt="Basic Java Certification" class="cert-img">
+            <img src="frontend/assets/certificates/JAVA HACKERANK.png" alt="Basic Java Certification" class="cert-img">
             <div class="cert-title">Basic Java Certification</div>
           </div>
 
           <!-- Certificate 2 -->
           <div class="cert-card">
-            <img src="assets/certificates/BHUVANSHU-Python.jpg" alt="Python Certification" class="cert-img">
+            <img src="frontend/assets/certificates/BHUVANSHU-Python.jpg" alt="Python Certification" class="cert-img">
             <div class="cert-title">Python</div>
           </div>
 
           <!-- Certificate 3 -->
           <div class="cert-card">
-            <img src="assets/certificates/BHUVANSHU-Linux.jpg" alt="Linux Certification" class="cert-img">
+            <img src="frontend/assets/certificates/BHUVANSHU-Linux.jpg" alt="Linux Certification" class="cert-img">
             <div class="cert-title">Linux</div>
           </div>
 
           <!-- Certificate 4 -->
           <div class="cert-card">
-            <img src="assets/certificates/GIT Internshala.png" alt="Git Certification" class="cert-img">
+            <img src="frontend/assets/certificates/GIT Internshala.png" alt="Git Certification" class="cert-img">
             <div class="cert-title">Git &amp; GitHub</div>
           </div>
 
           <!-- Certificate 5 -->
           <div class="cert-card">
-            <img src="assets/certificates/Applied AI EU.jpg" alt="Applied AI Certification" class="cert-img">
+            <img src="frontend/assets/certificates/Applied AI EU.jpg" alt="Applied AI Certification" class="cert-img">
             <div class="cert-title">Applied AI</div>
           </div>
 
           <!-- Certificate 6 -->
           <div class="cert-card">
-            <img src="assets/certificates/HTML CSS Internshala.jpg" alt="HTML &amp; CSS Certification" class="cert-img">
+            <img src="frontend/assets/certificates/HTML CSS Internshala.jpg" alt="HTML &amp; CSS Certification"
+              class="cert-img">
             <div class="cert-title">HTML &amp; CSS</div>
           </div>
 
@@ -376,7 +377,7 @@
         <div class="card resume-card">
           <p>Download my resume here:</p>
           <div class="resume-actions">
-            <a class="btn primary" href="assets/resume.pdf" download>Download CV</a>
+            <a class="btn primary" href="frontend/assets/resume.pdf" download>Download CV</a>
             <a class="btn outline" href="#contact">Request Updated CV</a>
           </div>
         </div>
@@ -397,38 +398,38 @@
               <a href="https://mail.google.com/mail/?view=cm&to=bhuvanshusingh@gmail.com" target="_blank"
                 rel="noopener noreferrer" class="contact-icon">
 
-                <img src="assets/gmail.png" alt="Gmail" class="icon-img">
+                <img src="frontend/assets/gmail.png" alt="Gmail" class="icon-img">
               </a>
 
               <a href="https://github.com/bhuvanshu" target="_blank" rel="noopener noreferrer" class="contact-icon">
 
-                <img src="assets/github.png" alt="GitHub" class="icon-img">
+                <img src="frontend/assets/github.png" alt="GitHub" class="icon-img">
               </a>
               <a href="https://www.linkedin.com/in/bhuvanshu-singh/" target="_blank" rel="noopener noreferrer"
                 class="contact-icon">
 
-                <img src="assets/linkedin.png" alt="LinkedIn" class="icon-img">
+                <img src="frontend/assets/linkedin.png" alt="LinkedIn" class="icon-img">
               </a>
             </div>
           </div>
 
           <div class="card">
             <h3>Quick message</h3>
-            <form class="form" onsubmit="return false;">
+            <form id="contactForm" class="form" onsubmit="return false;">
               <div class="form-row">
                 <label>Name</label>
-                <input type="text" placeholder="Your name" />
+                <input id="name" type="text" placeholder="Your name" />
               </div>
               <div class="form-row">
                 <label>Email</label>
-                <input type="email" placeholder="your@email.com" />
+                <input id="email" type="email" placeholder="your@email.com" />
               </div>
               <div class="form-row">
                 <label>Message</label>
-                <textarea rows="4" placeholder="Write your message..."></textarea>
+                <textarea id="message" rows="4" placeholder="Write your message..."></textarea>
               </div>
 
-              <button class="btn primary" type="button" id="fakeSendBtn">
+              <button class="btn primary" type="button" id="SendBtn">
                 Send Message
               </button>
 
@@ -450,8 +451,8 @@
     <img class="cert-modal-content" id="certModalImg" alt="Certificate Image">
   </div>
 
-  <script src="js/profile-hover.js"></script>
-  <script src="js/main.js"></script>
+  <script src="frontend/js/profile-hover.js"></script>
+  <script src="frontend/js/main.js"></script>
 </body>
 
 </html>

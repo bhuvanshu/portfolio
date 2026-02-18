@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Portfolio</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+  <div class="admin-wrapper">
+
+    <!-- Header -->
+    <header class="admin-header">
+      <div class="admin-logo">B</div>
+      <div class="admin-header-text">
+        <h1>Portfolio Admin</h1>
+        <p>Contact message management</p>
+      </div>
+      <div class="status-badge" id="statusBadge">
+        <span class="dot"></span>
+        <span id="statusText">Offline</span>
+      </div>
+    </header>
+
+    <!-- Login Box -->
+    <div id="loginBox">
+      <div class="login-icon">🔐</div>
+      <h2>Admin Access</h2>
+      <p>Enter your secret key to view contact messages</p>
+
+      <div class="input-group">
+        <label for="adminKey">Admin Key</label>
+        <input type="password" id="adminKey" placeholder="••••••••••••" />
+      </div>
+
+      <button class="btn-primary" onclick="login()">Login →</button>
+    </div>
+
+    <!-- Dashboard (shown after login) -->
+    <div id="dashboard" style="display:none;">
+      <div class="dashboard-header">
+        <h2>📬 Contact Messages</h2>
+        <span class="record-count" id="recordCount">0 records</span>
+      </div>
+
+      <table id="contactTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <script src="admin.js"></script>
+
+</body>
+
+</html>

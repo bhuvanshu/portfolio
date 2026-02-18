@@ -225,3 +225,65 @@ modal.onclick = (e) => {
     modal.style.display = "none";
   }
 };
+
+// Contact Form Functionality
+document
+  .getElementById("SendBtn")
+  .addEventListener("click", sendMessage);
+
+async function sendMessage() {
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  // ---------- Frontend validation ----------
+  if (!name || !email || !message) {
+    alert("All fields are required ❌");
+    return;
+  }
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailPattern.test(email)) {
+    alert("Enter valid email format ❌");
+    return;
+  }
+
+  const data = { name, email, message };
+
+  try {
+
+    const res = await fetch("http://localhost:8080/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    // ---------- Backend response handling ----------
+    if (res.ok) {
+
+      alert("Message Sent Successfully ✅");
+
+      document.getElementById("contactForm").reset();
+
+    } else if (res.status === 400) {
+
+      alert("Invalid input ❌ Check fields again");
+
+    } else {
+
+      alert("Server error ⚠️ Try later");
+
+    }
+
+  } catch (error) {
+
+    console.error(error);
+    alert("Backend not reachable ❌");
+
+  }
+}
+
