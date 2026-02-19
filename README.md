@@ -6,15 +6,13 @@ This is a production-ready developer portfolio showcasing backend engineering sy
 
 ## 🔗 Live Platforms
 
-*   **Frontend (Public Portfolio)**: [bhuvanshu.github.io/portfolio/](https://bhuvanshu.github.io/portfolio/)
+*   **Frontend (Public Portfolio)**:https://bhuvanshu.github.io/portfolio/
 *   **Backend API**: Deployed via Railway Cloud Infrastructure
 *   **Admin Panel**: Secured dashboard for managing contact submissions
 
 ---
 
 ## 📌 Overview
-
-I am a final-year Computer Science student specializing in backend engineering, system architecture, and data-driven platforms.
 
 This portfolio is a complete full-stack system including:
 *   **Responsive Frontend**: Optimized for all devices with Dark/Light mode support.
@@ -27,7 +25,7 @@ This portfolio is a complete full-stack system including:
 
 ## 🏗 System Architecture
 
-```text
+```
 User → Frontend UI → REST API → Database
                      ↓
                 Admin Console
@@ -82,14 +80,6 @@ Portfolio/
 ├── index.html    → Main Entry Point
 └── Procfile      → Cloud Deployment Config
 ```
-
----
-
-## 📫 Contact
-
-*   **Email**: [bhuvanshusingh@gmail.com](mailto:bhuvanshusingh@gmail.com)
-*   **LinkedIn**: [linkedin.com/in/bhuvanshu-singh](https://linkedin.com/in/bhuvanshu-singh)
-*   **GitHub**: [github.com/bhuvanshu](https://github.com/bhuvanshu)
 
 ---
 
