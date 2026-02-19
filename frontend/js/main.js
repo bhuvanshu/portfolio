@@ -27,13 +27,8 @@
     html.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
 
-    if (theme === 'dark') {
-      themeIcon.textContent = '☀️';
-      themeText.textContent = 'Light';
-    } else {
-      themeIcon.textContent = '🌙';
-      themeText.textContent = 'Dark';
-    }
+    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    if (themeText) themeText.textContent = theme === 'dark' ? 'Light' : 'Dark';
   }
 
   // Function to toggle theme
