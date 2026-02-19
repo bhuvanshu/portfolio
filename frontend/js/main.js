@@ -253,7 +253,8 @@ async function sendMessage() {
   const data = { name, email, message };
 
   try {
-    const res = await fetch("https://your-url.up.railway.app/api/contact", {
+    const API_BASE_URL = 'https://portfolio-production-557c.up.railway.app/api/contact';
+    const res = await fetch(API_BASE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -271,8 +272,8 @@ async function sendMessage() {
     document.getElementById("contactForm").reset();
 
   } catch (error) {
-    console.error(error);
-    alert("Backend not reachable ❌");
+    console.error("Submission error:", error);
+    alert(`Backend not reachable ❌\n\nDetails: ${error.message}\nCheck console for more info.`);
   }
 }
 

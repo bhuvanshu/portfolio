@@ -1,4 +1,4 @@
-const BASE_URL = "https://your-url.up.railway.app";
+const BASE_URL = 'https://portfolio-production-557c.up.railway.app';
 let ADMIN_KEY = "";
 
 // ---------- Toast helper ----------
