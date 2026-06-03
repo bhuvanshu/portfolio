@@ -5,22 +5,49 @@
   const themeText = document.getElementById('themeText');
   const html = document.documentElement;
 
-  // Mobile nav toggle
+  // Mobile nav toggle (sidebar)
   const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
+  const sidebar = document.getElementById('sidebar');
 
-  if (menuToggle && navLinks) {
+  if (menuToggle && sidebar) {
     menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
+      sidebar.classList.toggle('show');
     });
 
-    // Close menu when a link is clicked
-    navLinks.querySelectorAll('.nav__link').forEach(link => {
+    // Close sidebar when a link is clicked
+    sidebar.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
+        sidebar.classList.remove('show');
       });
     });
   }
+
+  // Scroll Spy active navigation highlight
+  const navLinksList = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section');
+
+  function scrollSpy() {
+    let currentSectionId = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (window.scrollY >= sectionTop - 200) {
+        currentSectionId = section.getAttribute('id');
+      }
+    });
+
+    if (currentSectionId) {
+      navLinksList.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  }
+
+  window.addEventListener('scroll', scrollSpy);
+  window.addEventListener('load', scrollSpy);
 
   // Function to set theme
   function setTheme(theme) {
@@ -66,31 +93,20 @@
   }
 
   function createParticle() {
-    const types = ['star', 'meteor', 'comet'];
-    const type = types[Math.floor(Math.random() * types.length)];
-
-    let particle = {
+    return {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      type: type,
-      speed: Math.random() * 2 + 0.5,
-      opacity: Math.random(),
-      size: Math.random() * 2 + 1
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3 - 0.2,
+      opacity: Math.random() * 0.5 + 0.1,
+      size: Math.random() * 2 + 0.5,
+      color: Math.random() > 0.5 ? '#3b82f6' : '#ec4899'
     };
-
-    if (type === 'meteor' || type === 'comet') {
-      particle.x = Math.random() * canvas.width;
-      particle.y = -10;
-      particle.dx = (Math.random() - 0.5) * 2;
-      particle.dy = Math.random() * 2 + 1;
-    }
-
-    return particle;
   }
 
   function initParticles() {
     particles = [];
-    const numParticles = Math.floor((canvas.width * canvas.height) / 15000); // Adjust density
+    const numParticles = Math.floor((canvas.width * canvas.height) / 12000);
     for (let i = 0; i < numParticles; i++) {
       particles.push(createParticle());
     }
@@ -98,17 +114,16 @@
 
   function updateParticles() {
     particles.forEach((p, index) => {
-      if (p.type === 'star') {
-        p.opacity += (Math.random() - 0.5) * 0.02;
-        p.opacity = Math.max(0, Math.min(1, p.opacity));
-      } else if (p.type === 'meteor' || p.type === 'comet') {
-        p.x += p.dx * p.speed;
-        p.y += p.dy * p.speed;
-        p.opacity -= 0.005;
-        if (p.y > canvas.height + 10 || p.opacity <= 0) {
-          particles[index] = createParticle();
-        }
-      }
+      p.x += p.dx;
+      p.y += p.dy;
+      
+      p.opacity += (Math.random() - 0.5) * 0.01;
+      p.opacity = Math.max(0.1, Math.min(0.6, p.opacity));
+      
+      if (p.y < -10) p.y = canvas.height + 10;
+      if (p.x < -10) p.x = canvas.width + 10;
+      if (p.x > canvas.width + 10) p.x = -10;
+      if (p.y > canvas.height + 10) p.y = -10;
     });
   }
 
@@ -117,32 +132,12 @@
     particles.forEach(p => {
       ctx.save();
       ctx.globalAlpha = p.opacity;
-
-      if (p.type === 'star') {
-        ctx.fillStyle = '#ffffff';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (p.type === 'meteor') {
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p.x - p.dx * 10, p.y - p.dy * 10);
-        ctx.stroke();
-      } else if (p.type === 'comet') {
-        ctx.strokeStyle = '#60a5fa';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p.x - p.dx * 20, p.y - p.dy * 20);
-        ctx.stroke();
-        // Add glow
-        ctx.shadowColor = '#60a5fa';
-        ctx.shadowBlur = 5;
-        ctx.stroke();
-      }
-
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = p.size * 2;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
       ctx.restore();
     });
   }

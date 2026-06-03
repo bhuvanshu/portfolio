@@ -1,180 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bhuvanshu | Portfolio</title>
   <meta name="description" content="Bhuvanshu Singh - Software Developer | Java, Spring Boot, REST APIs, Machine Learning | Portfolio" />
-  <link rel="stylesheet" href="frontend/css/style.css" />
+  <link rel="stylesheet" href="frontend/css/style.css?v=1.2" />
 </head>
 
 <body>
   <canvas id="galaxy-bg"></canvas>
 
-  <!-- Navbar -->
-  <header class="header">
-    <nav class="nav container">
-      <a href="#home" class="logo"><span class="profile-icon">B</span> Bhuvanshu Singh</a>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <a href="#home" class="logo"><span class="brand-dot"></span> Bhuvanshu</a>
+    </div>
 
-      <button class="nav__toggle" id="menuToggle" aria-label="Open menu">
-        ☰
-      </button>
-
-      <ul class="nav__links" id="navLinks">
-        <li><a href="#home" class="nav__link">Home</a></li>
-        <li><a href="#about" class="nav__link">About</a></li>
-        <li><a href="#skills" class="nav__link">Skills</a></li>
-        <li><a href="#projects" class="nav__link">Projects</a></li>
-        <li><a href="#resume" class="nav__link">Resume</a></li>
-        <li><a href="#contact" class="nav__link">Contact</a></li>
-
+    <!-- Navigation links -->
+    <nav class="sidebar-nav">
+      <ul class="nav-links">
         <li>
-          <a href="admin/admin.html" class="admin-link">
-            <button class="admin-btn" title="Admin Console">
-              <span>📝</span>
-              <span class="admin-btn__text">Console</span>
-            </button>
+          <a href="#home" class="nav-link active" id="nav-home">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>HOME</span>
           </a>
         </li>
-
         <li>
-          <button class="theme-toggle-circular" id="themeToggle" aria-label="Toggle theme">
-            <span id="themeIcon">🌙</span>
-          </button>
+          <a href="#about" class="nav-link" id="nav-about">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>ABOUT</span>
+          </a>
+        </li>
+        <li>
+          <a href="#skills" class="nav-link" id="nav-skills">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span>SKILLS</span>
+          </a>
+        </li>
+        <li>
+          <a href="#projects" class="nav-link" id="nav-projects">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <span>WORK</span>
+          </a>
+        </li>
+        <li>
+          <a href="#certifications" class="nav-link" id="nav-certifications">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            <span>CERTS</span>
+          </a>
+        </li>
+        <li>
+          <a href="#contact" class="nav-link" id="nav-contact">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>CONTACT</span>
+          </a>
         </li>
       </ul>
     </nav>
+
+    <!-- Sidebar footer -->
+    <div class="sidebar-footer">
+      <a href="frontend/assets/resume.pdf" class="btn-download-cv" download id="downloadCV">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>DOWNLOAD CV</span>
+      </a>
+
+      <!-- Social Links -->
+      <div class="sidebar-socials">
+        <a href="https://github.com/bhuvanshu" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/bhuvanshu-singh/" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="social-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&to=bhuvanshusingh@gmail.com" target="_blank" rel="noopener noreferrer" title="Email" class="social-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile Toggle Header -->
+  <header class="mobile-header">
+    <a href="#home" class="mobile-logo">Bhuvanshu</a>
+    <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      ☰
+    </button>
   </header>
 
-  <!-- Main -->
-  <main>
+  <!-- Main Content Area -->
+  <main class="main-content">
 
-    <!-- Hero -->
-    <section class="hero container" id="home">
-      <div class="hero__left">
-        <p class="badge">Final Year BCA • Software Developer</p>
-        <h1 class="hero__title">Hi, I’m <span class="accent">Bhuvanshu</span></h1>
-        <p class="hero__subtitle">
-          I build scalable backend systems using <strong>Java & Spring Boot</strong> and
-          develop data-driven applications integrating <strong>Machine Learning models</strong>.
-        </p>
+    <!-- Hero Section -->
+    <section class="hero-section container" id="home">
+      <!-- Availability Pill -->
+      <div class="availability-badge">
+        <span class="availability-dot"></span>
+        <span>Available for work</span>
+      </div>
 
-        <div class="hero__cta">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn outline" href="#contact">Contact Me</a>
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="developer-tag">JAVA BACKEND DEVELOPER</span>
+          <h1 class="hero-title">BHUVANSHU <br><span class="gradient-text">SINGH.</span></h1>
+          <p class="hero-subtitle">
+            I craft <span class="text-highlight">scalable backend systems</span> and integrate practical <span class="text-highlight">machine learning frameworks</span> to deliver high-performance solutions.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn-primary" href="#projects" id="heroViewWork">
+              <span>VIEW WORK</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a class="btn-outline" href="#contact" id="heroGetInTouch">GET IN TOUCH</a>
+          </div>
         </div>
 
-        <div class="hero__meta">
-          <div class="meta-card">
-            <p class="meta-title">Focus</p>
-            <p class="meta-value">Web Dev + Practical AI</p>
-          </div>
-
-          <div class="meta-card">
-            <p class="meta-title">Stack</p>
-            <p class="meta-value">Java • Spring Boot • REST APIs</p>
-            <p>Python • ML Integration</p>
+        <div class="hero-right">
+          <!-- Profile Card -->
+          <div class="profile-card-wrapper">
+            <div class="profile-card-glow"></div>
+            <div class="profile-card-image-container profile-img">
+              <img src="frontend/assets/NO_BACKGROUND.png" alt="Bhuvanshu Singh profile photo" onerror="this.style.display='none'" />
+              <div class="profile-placeholder-redesign" id="profilePlaceholder">
+                <span>B</span>
+              </div>
+            </div>
+            <!-- Glassmorphism Stats Badge -->
+            <div class="floating-badge">
+              <div class="floating-badge-glow"></div>
+              <span class="badge-title">IT Analyst</span>
+              <span class="badge-desc">Selected @ HCL</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="hero__right">
-        <div class="profile-card">
-          <div class="profile-img">
-
-            <img src="frontend/assets/Image.jpg" alt="Bhuvanshu profile photo" onerror="this.style.display='none'" />
-            <div class="profile-placeholder" id="profilePlaceholder">
-              <span>B</span>
-            </div>
-          </div>
-          <div class="profile-info">
-            <h3>Bhuvanshu Singh</h3>
-            <p>Java Backend Developer</p>
-            <div class="profile-links">
-              <a href="https://github.com/bhuvanshu" target="_blank" rel="noopener noreferrer">
-                GitHub
-              </a>
-
-              <a href="https://www.linkedin.com/in/bhuvanshu-singh/" target="_blank" rel="noopener noreferrer">
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="note-card">
-          <h4>What I Deliver</h4>
-
-          <ul>
-            <li>Scalable backend systems using Java & Spring Boot</li>
-            <li>REST API development with secure authentication</li>
-            <li>Database-driven applications & workflow platforms</li>
-          </ul>
-        </div>
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <span>SCROLL</span>
+        <div class="scroll-line"></div>
       </div>
     </section>
 
-    <!-- About -->
+    <!-- About Section -->
     <section class="section container" id="about">
+      <div class="about-grid">
+        <div class="about-left">
+          <span class="section-tag">WHO I AM</span>
+          <h2 class="about-headline">CREATIVE MIND,<br><span class="gradient-text">PRECISE CODE.</span></h2>
+        </div>
 
-      <div class="section-head">
-        <h2>About</h2>
-      </div>
-
-      <div class="grid-2">
-
-
-        <div class="card">
-          <h3>Who I Am</h3>
-
+        <div class="about-middle">
           <p>
             I’m a final-year Computer Science student specializing in backend
             engineering and system-oriented software development. My primary
             focus is on building scalable REST APIs, database-driven platforms,
             and structured enterprise applications using Java and Spring Boot.
           </p>
-
           <p>
             I enjoy working on workflow-based systems such as portals,
             dashboards, and management platforms that solve real operational
             problems and demonstrate production-level architecture.
           </p>
+          <div class="about-actions">
+            <a href="#contact" class="btn-more-about">
+              <span>LET'S CONNECT</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
         </div>
 
+        <!-- Stats Card Grid -->
+        <div class="about-right">
+          <div class="stats-grid">
+            <div class="stat-card glass-card">
+              <div class="stat-icon-wrapper">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <span class="stat-number">4+</span>
+              <span class="stat-label">Projects Completed</span>
+            </div>
 
-        <div class="card">
-          <h3>Achievements</h3>
+            <div class="stat-card glass-card">
+              <div class="stat-icon-wrapper">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <span class="stat-number">1</span>
+              <span class="stat-label">Research Publication</span>
+            </div>
 
-          <ul class="achievements-list">
-            <li class="achievement-item">
-              <span class="achievement-icon">🏢</span>
-              <span>Selected as <strong>IT Analyst at HCL Technologies</strong> through campus placement drive.</span>
-            </li>
-            <li class="achievement-item">
-              <span class="achievement-icon">💻</span>
-              <span>Competed in <strong>IEEE Xtreme 19.0</strong>, a 24-hour international competitive programming challenge.</span>
-            </li>
-            <li class="achievement-item">
-              <span class="achievement-icon">🏔️</span>
-              <span>Completed <strong>Basic & Advanced Mountaineering Courses</strong> under Indian Army Officials from NIM.</span>
-            </li>
-          </ul>
+            <div class="stat-card glass-card">
+              <div class="stat-icon-wrapper">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                </svg>
+              </div>
+              <span class="stat-number">7+</span>
+              <span class="stat-label">Certifications</span>
+            </div>
+
+            <div class="stat-card glass-card">
+              <div class="stat-icon-wrapper">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <span class="stat-number">NIM</span>
+              <span class="stat-label">Mountaineering Certs</span>
+            </div>
+          </div>
         </div>
-
       </div>
     </section>
 
-
+    <!-- Technical Skills Section -->
     <section class="section container" id="skills">
-
       <div class="section-head">
+        <span class="section-tag">ABILITIES</span>
         <h2>Technical Skills</h2>
       </div>
 
       <div class="skills-grid">
-
-        <div class="card">
+        <div class="card glass-card">
           <h3>Programming</h3>
           <div class="skills-list">
             <div class="skill-item">
@@ -192,7 +287,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card glass-card">
           <h3>Backend Development</h3>
           <div class="skills-list">
             <div class="skill-item">
@@ -214,7 +309,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card glass-card">
           <h3>Frontend (Supporting)</h3>
           <div class="skills-list">
             <div class="skill-item">
@@ -232,7 +327,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card glass-card">
           <h3>Databases</h3>
           <div class="skills-list">
             <div class="skill-item">
@@ -242,7 +337,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card glass-card">
           <h3>Data Science & AI</h3>
           <div class="skills-list">
             <div class="skill-item">
@@ -268,7 +363,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card glass-card">
           <h3>API & Deployment</h3>
           <div class="skills-list">
             <div class="skill-item">
@@ -282,7 +377,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card glass-card">
           <h3>Tools & Platforms</h3>
           <div class="skills-list">
             <div class="skill-item">
@@ -311,282 +406,306 @@
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- Certifications -->
-    <section class="certifications-section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Certifications</h2>
-        </div>
+    <!-- Projects Section -->
+    <section class="section container" id="projects">
+      <div class="section-head">
+        <span class="section-tag">MY CREATIONS</span>
+        <h2>Projects</h2>
+      </div>
 
+      <div class="projects-grid">
+        <!-- Placement Portal -->
+        <article class="project card glass-card">
+          <div class="project-top">
+            <h3>Smart Placement Portal</h3>
+            <span class="tag status-process">In Development</span>
+          </div>
+          <p class="project-desc">
+            A backend-driven workflow platform designed for colleges to manage
+            student placement records, company drives, applications, and
+            administrative analytics through structured role-based access.
+          </p>
+          <div class="project-tech">
+            <span>Java</span>
+            <span>Spring Boot</span>
+            <span>MySQL</span>
+            <span>REST APIs</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-project-link outline" href="https://github.com/bhuvanshu" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a class="btn-project-link primary" href="#" target="_blank" rel="noopener noreferrer">
+              <span>Live Demo</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- AI-Assisted Student Mental Health Platform -->
+        <article class="project card glass-card">
+          <div class="project-top">
+            <h3>Mental Health Platform</h3>
+            <span class="tag status-done">Research</span>
+          </div>
+          <p class="project-desc">
+            An AI-assisted screening framework and institutional dashboard to identify student mental health risk
+            patterns using correlation mapping, PCA, and machine learning models.
+          </p>
+
+          <div class="publication-link">
+            <span class="publication-badge">📄 Published Research</span>
+            <a class="publication-btn" href="https://iipseries.org/viewpaper.php?pid=8113&pt=a-multi-domain-machine-learning-framework-for-depression-risk-screening-in-college-students-using-correlation-mapping-and-pca" target="_blank" rel="noopener noreferrer">
+              A Multi-Domain ML Framework for Depression Screening
+            </a>
+          </div>
+
+          <div class="project-tech">
+            <span>Python</span>
+            <span>Flask</span>
+            <span>Scikit-learn</span>
+            <span>Spring Boot</span>
+            <span>REST APIs</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-project-link outline" href="https://github.com/bhuvanshu/Depression-Analysis-using-ML" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a class="btn-project-link primary" href="https://iipseries.org/viewpaper.php?pid=8113&pt=a-multi-domain-machine-learning-framework-for-depression-risk-screening-in-college-students-using-correlation-mapping-and-pca" target="_blank" rel="noopener noreferrer">
+              <span>Paper Link</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Vegetation Health Classification -->
+        <article class="project card glass-card">
+          <div class="project-top">
+            <h3>Vegetation Classification ML</h3>
+            <span class="tag status-done">Research</span>
+          </div>
+          <p class="project-desc">
+            An environmental monitoring system that classifies vegetation health and estimates above-ground carbon
+            density across national park landscapes using satellite imagery and ensemble ML.
+          </p>
+          <div class="project-tech">
+            <span>Python</span>
+            <span>Machine Learning</span>
+            <span>Remote Sensing</span>
+            <span>Sentinel-2</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-project-link outline" href="https://github.com/bhuvanshu/Vegetation-Health-Classification-Using-ML" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Personal Portfolio -->
+        <article class="project card glass-card">
+          <div class="project-top">
+            <h3>Developer Portfolio Platform</h3>
+            <span class="tag status-done">Live</span>
+          </div>
+          <p class="project-desc">
+            A responsive personal portfolio platform showcasing backend
+            systems, research projects, certifications, and deployable
+            software builds with structured UI and modular architecture.
+          </p>
+          <div class="project-tech">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Java</span>
+            <span>Spring Boot</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-project-link outline" href="https://github.com/bhuvanshu/portfolio" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a class="btn-project-link primary" href="https://bhuvanshu.github.io/portfolio/" target="_blank" rel="noopener noreferrer">
+              <span>Live Site</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section container" id="certifications">
+      <div class="section-head">
+        <span class="section-tag">CREDENTIALS</span>
+        <h2>Certifications</h2>
+      </div>
+
+      <div class="certifications-container-wrapper">
         <div class="certifications-container">
-
           <!-- Certificate 1 -->
-          <div class="cert-card">
-            <img src="frontend/assets/certificates/UDEMY _JAVA6296a922262_page-0001.jpg" alt="Java, Spring Boot, Spring AI - Gen AI Certification" class="cert-img">
-            <div class="cert-title">Java, Spring Boot, Spring AI - Gen AI</div>
-            <a class="cert-credential" href="https://ude.my/UC-510fedcf-9f3c-4edc-b4ac-36296a922262" target="_blank" rel="noopener noreferrer">🔗 Verify</a>
+          <div class="cert-card glass-card">
+            <div class="cert-img-container">
+              <img src="frontend/assets/certificates/UDEMY _JAVA6296a922262_page-0001.jpg" alt="Java, Spring Boot, Spring AI - Gen AI Certification" class="cert-img">
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">Java, Spring Boot, Spring AI</div>
+              <a class="cert-credential" href="https://ude.my/UC-510fedcf-9f3c-4edc-b4ac-36296a922262" target="_blank" rel="noopener noreferrer">🔗 Verify</a>
+            </div>
           </div>
 
           <!-- Certificate 2 -->
-          <div class="cert-card">
-            <img src="frontend/assets/certificates/JAVA HACKERANK.png" alt="Basic Java Certification" class="cert-img">
-            <div class="cert-title">Basic Java Certification</div>
+          <div class="cert-card glass-card">
+            <div class="cert-img-container">
+              <img src="frontend/assets/certificates/JAVA HACKERANK.png" alt="Basic Java Certification" class="cert-img">
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">Basic Java Certification</div>
+            </div>
           </div>
 
           <!-- Certificate 3 -->
-          <div class="cert-card">
-            <img src="frontend/assets/certificates/BHUVANSHU-Python.jpg" alt="Python Certification" class="cert-img">
-            <div class="cert-title">Python — SINE, IIT Bombay</div>
+          <div class="cert-card glass-card">
+            <div class="cert-img-container">
+              <img src="frontend/assets/certificates/BHUVANSHU-Python.jpg" alt="Python Certification" class="cert-img">
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">Python — SINE, IIT Bombay</div>
+            </div>
           </div>
 
           <!-- Certificate 4 -->
-          <div class="cert-card">
-            <img src="frontend/assets/certificates/BHUVANSHU-Linux.jpg" alt="Linux Certification" class="cert-img">
-            <div class="cert-title">Linux</div>
+          <div class="cert-card glass-card">
+            <div class="cert-img-container">
+              <img src="frontend/assets/certificates/BHUVANSHU-Linux.jpg" alt="Linux Certification" class="cert-img">
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">Linux Certification</div>
+            </div>
           </div>
 
           <!-- Certificate 5 -->
-          <div class="cert-card">
-            <img src="frontend/assets/certificates/GIT Internshala.png" alt="Git &amp; GitHub Certification" class="cert-img">
-            <div class="cert-title">Git &amp; GitHub</div>
+          <div class="cert-card glass-card">
+            <div class="cert-img-container">
+              <img src="frontend/assets/certificates/GIT Internshala.png" alt="Git &amp; GitHub Certification" class="cert-img">
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">Git &amp; GitHub</div>
+            </div>
           </div>
 
           <!-- Certificate 6 -->
-          <div class="cert-card">
-            <img src="frontend/assets/certificates/Applied AI EU.jpg" alt="AI Essentials - Applied AI Institute of Europe" class="cert-img">
-            <div class="cert-title">AI Essentials</div>
+          <div class="cert-card glass-card">
+            <div class="cert-img-container">
+              <img src="frontend/assets/certificates/Applied AI EU.jpg" alt="AI Essentials - Applied AI Institute of Europe" class="cert-img">
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">AI Essentials</div>
+            </div>
           </div>
 
           <!-- Certificate 7 -->
-          <div class="cert-card">
-            <img src="frontend/assets/certificates/HTML CSS Internshala.jpg" alt="HTML &amp; CSS Certification"
-              class="cert-img">
-            <div class="cert-title">HTML &amp; CSS</div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section class="projects-section" id="projects">
-      <div class="container">
-        <div class="section-head">
-          <h2>Projects</h2>
-        </div>
-
-        <div class="projects-grid">
-
-          <!-- Placement Portal -->
-          <article class="project card">
-            <div class="project-top">
-              <h3>Smart Placement Portal</h3>
-              <span class="tag status-process">In Development</span>
+          <div class="cert-card glass-card">
+            <div class="cert-img-container">
+              <img src="frontend/assets/certificates/HTML CSS Internshala.jpg" alt="HTML &amp; CSS Certification" class="cert-img">
             </div>
-            <p class="project-desc">
-              A backend-driven workflow platform designed for colleges to manage
-              student placement records, company drives, applications, and
-              administrative analytics through structured role-based access.
-            </p>
-            <div class="project-tech">
-              <span>Java</span>
-              <span>Spring Boot</span>
-              <span>MySQL</span>
-              <span>REST APIs</span>
+            <div class="cert-info">
+              <div class="cert-title">HTML &amp; CSS</div>
             </div>
-            <div class="project-actions">
-              <a class="btn small outline" href="https://github.com/bhuvanshu" target="_blank"
-                rel="noopener noreferrer">
-                GitHub
-              </a>
-              <a class="btn small primary" href="#" target="_blank" rel="noopener noreferrer">
-                Live Demo
-              </a>
-            </div>
-          </article>
-
-          <!-- AI-Assisted Student Mental Health Platform -->
-          <article class="project card">
-            <div class="project-top">
-              <h3>AI-Assisted Student Mental Health Platform</h3>
-              <span class="tag status-done">Research</span>
-            </div>
-            <p class="project-desc">
-              An AI-assisted screening framework and institutional dashboard to identify student mental health risk
-              patterns using correlation mapping, PCA, and machine learning models.
-            </p>
-
-
-            <div class="publication-link">
-              <span class="publication-badge">📄 Published Research</span>
-              <a class="btn small primary publication-btn" href="https://iipseries.org/viewpaper.php?pid=8113&pt=a-multi-domain-machine-learning-framework-for-depression-risk-screening-in-college-students-using-correlation-mapping-and-pca"
-                target="_blank" rel="noopener noreferrer">
-                🔗 A Multi-Domain ML Framework for Depression Risk Screening
-              </a>
-            </div>
-
-            <div class="project-tech">
-              <span>Python</span>
-              <span>Flask</span>
-              <span>Scikit-learn</span>
-              <span>Spring Boot</span>
-              <span>REST APIs</span>
-            </div>
-            <div class="project-actions">
-              <a class="btn small outline" href="https://github.com/bhuvanshu/Depression-Analysis-using-ML"
-                target="_blank" rel="noopener noreferrer">
-                GitHub
-              </a>
-              <a class="btn small primary"
-                href="https://iipseries.org/viewpaper.php?pid=8113&pt=a-multi-domain-machine-learning-framework-for-depression-risk-screening-in-college-students-using-correlation-mapping-and-pca"
-                target="_blank" rel="noopener noreferrer">
-                Research Paper
-              </a>
-            </div>
-          </article>
-
-          <!-- Vegetation Health Classification -->
-          <article class="project card">
-            <div class="project-top">
-              <h3>Vegetation Health Classification Using ML</h3>
-              <span class="tag status-done">Research</span>
-            </div>
-            <p class="project-desc">
-              An environmental monitoring system that classifies vegetation health and estimates above-ground carbon
-              density across national park landscapes using satellite imagery and ensemble ML.
-            </p>
-
-            <div class="project-tech">
-              <span>Python</span>
-              <span>Machine Learning</span>
-              <span>Remote Sensing</span>
-              <span>Sentinel-2</span>
-              <span>GIS</span>
-            </div>
-            <div class="project-actions">
-              <a class="btn small outline" href="https://github.com/bhuvanshu/Vegetation-Health-Classification-Using-ML" target="_blank"
-                rel="noopener noreferrer">
-                GitHub
-              </a>
-            </div>
-          </article>
-
-          <!-- Portfolio -->
-          <article class="project card">
-            <div class="project-top">
-              <h3>Developer Portfolio Platform</h3>
-              <span class="tag status-done">Live</span>
-            </div>
-            <p class="project-desc">
-              A responsive personal portfolio platform showcasing backend
-              systems, research projects, certifications, and deployable
-              software builds with structured UI and modular architecture.
-            </p>
-            <div class="project-tech">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>Java</span>
-              <span>Spring Boot</span>
-              <span>MySQL</span>
-            </div>
-            <div class="project-actions">
-              <a class="btn small outline" href="https://github.com/bhuvanshu/portfolio" target="_blank"
-                rel="noopener noreferrer">
-                GitHub
-              </a>
-              <a class="btn small primary" href="https://bhuvanshu.github.io/portfolio/" target="_blank"
-                rel="noopener noreferrer">
-                Live Site
-              </a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Resume -->
-    <section class="resume-section" id="resume">
-      <div class="container">
-        <div class="section-head">
-          <h2>Resume</h2>
-        </div>
-        <div class="card resume-card">
-          <p>Download my resume here:</p>
-          <div class="resume-actions">
-            <a class="btn primary" href="frontend/assets/resume.pdf" download>Download CV</a>
-            <a class="btn outline" href="#contact">Request Updated CV</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="contact-section" id="contact">
-      <div class="container">
-        <div class="section-head">
-          <h2>Contact</h2>
-        </div>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Reach out to me</h3>
+    <!-- Contact Section -->
+    <section class="section container" id="contact">
+      <div class="section-head">
+        <span class="section-tag">GET IN TOUCH</span>
+        <h2>Contact</h2>
+      </div>
 
-            <div class="contact-links">
-              <a href="https://mail.google.com/mail/?view=cm&to=bhuvanshusingh@gmail.com" target="_blank"
-                rel="noopener noreferrer" class="contact-icon">
-
-                <img src="frontend/assets/gmail.png" alt="Gmail" class="icon-img">
-              </a>
-
-              <a href="https://github.com/bhuvanshu" target="_blank" rel="noopener noreferrer" class="contact-icon">
-
-                <img src="frontend/assets/github.png" alt="GitHub" class="icon-img">
-              </a>
-              <a href="https://www.linkedin.com/in/bhuvanshu-singh/" target="_blank" rel="noopener noreferrer"
-                class="contact-icon">
-
-                <img src="frontend/assets/linkedin.png" alt="LinkedIn" class="icon-img">
-              </a>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Quick message</h3>
-            <form id="contactForm" class="form" onsubmit="return false;">
-              <div class="form-row">
-                <label>Name</label>
-                <input id="name" type="text" placeholder="Your name" />
+      <div class="contact-grid">
+        <div class="card glass-card contact-info-card">
+          <h3>Reach out directly</h3>
+          <p class="contact-desc-text">Have a project, opportunity, or simply want to talk tech? Shoot me a message!</p>
+          <div class="contact-details">
+            <div class="contact-detail-item">
+              <div class="detail-icon-wrapper">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
               </div>
-              <div class="form-row">
-                <label>Email</label>
-                <input id="email" type="email" placeholder="your@email.com" />
+              <a href="mailto:bhuvanshusingh@gmail.com">bhuvanshusingh@gmail.com</a>
+            </div>
+            <div class="contact-detail-item">
+              <div class="detail-icon-wrapper">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
               </div>
-              <div class="form-row">
-                <label>Message</label>
-                <textarea id="message" rows="4" placeholder="Write your message..."></textarea>
-              </div>
-
-              <button class="btn primary" type="button" id="SendBtn">
-                Send Message
-              </button>
-
-            </form>
+              <a href="https://linkedin.com/in/bhuvanshu-singh" target="_blank" rel="noopener noreferrer">linkedin.com/in/bhuvanshu-singh</a>
+            </div>
           </div>
+        </div>
+
+        <div class="card glass-card contact-form-card">
+          <h3>Quick message</h3>
+          <form id="contactForm" class="form" onsubmit="return false;">
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" />
+            </div>
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="your@email.com" />
+            </div>
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" rows="4" placeholder="Write your message..."></textarea>
+            </div>
+
+            <button class="btn-primary" type="button" id="SendBtn">
+              <span>Send Message</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="footer container">
+      <p class="muted">© <span id="year"></span> Bhuvanshu Singh • Built with HTML, CSS & JS</p>
+    </footer>
   </main>
-
-  <footer class="footer container">
-    <p class="muted">© <span id="year"></span> Bhuvanshu • Built with HTML, CSS & JavaScript</p>
-  </footer>
 
   <!-- Certificate Modal Viewer -->
   <div id="certModal" class="cert-modal">
