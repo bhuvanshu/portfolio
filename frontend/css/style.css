@@ -15,7 +15,7 @@
   --accent: #3b82f6;
   --accent-secondary: #ec4899;
   --radius: 16px;
-  --sidebar-width: 180px;
+  --sidebar-width: 250px;
   --font-heading: 'Syne', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
 }
@@ -246,6 +246,8 @@ a {
   align-items: center;
   gap: 8px;
   letter-spacing: -0.03em;
+  padding: 0 8px;
+  white-space: nowrap;
 }
 
 .brand-dot {
@@ -280,6 +282,7 @@ a {
   transition: all 0.3s ease;
   background: transparent;
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -341,6 +344,7 @@ a {
   letter-spacing: 0.05em;
   transition: all 0.3s ease;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-download-cv:hover {
