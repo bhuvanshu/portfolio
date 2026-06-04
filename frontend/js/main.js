@@ -54,7 +54,7 @@
     html.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
 
-    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    if (themeIcon) themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
     if (themeText) themeText.textContent = theme === 'dark' ? 'Light' : 'Dark';
   }
 
@@ -116,10 +116,10 @@
     particles.forEach((p, index) => {
       p.x += p.dx;
       p.y += p.dy;
-      
+
       p.opacity += (Math.random() - 0.5) * 0.01;
       p.opacity = Math.max(0.1, Math.min(0.6, p.opacity));
-      
+
       if (p.y < -10) p.y = canvas.height + 10;
       if (p.x < -10) p.x = canvas.width + 10;
       if (p.x > canvas.width + 10) p.x = -10;
@@ -161,60 +161,225 @@
 
 })();
 
-// Load Certificate hover functionality
-const certContainer = document.querySelector(".certifications-container");
+// Premium Certificate Carousel Functionality
+(function () {
+  const certCarousel = document.getElementById("certCarousel");
+  const certPrevBtn = document.getElementById("certPrevBtn");
+  const certNextBtn = document.getElementById("certNextBtn");
+  const certDotsContainer = document.getElementById("certDots");
 
-if (certContainer) {
-  let scrollSpeed = 0;
+  if (!certCarousel) return;
 
-  certContainer.addEventListener("mousemove", (e) => {
-    const rect = certContainer.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const width = rect.width;
-    const edgeZone = 120;
+  const certCards = certCarousel.querySelectorAll(".cert-card");
+  if (certCards.length === 0) return;
 
-    if (x < edgeZone) {
-      scrollSpeed = -6;
-    } else if (x > width - edgeZone) {
-      scrollSpeed = 6;
-    } else {
-      scrollSpeed = 0;
+  // --- Helper: get the scroll step (one card width + gap) ---
+  function getScrollStep() {
+    const style = window.getComputedStyle(certCarousel);
+    const gap = parseFloat(style.columnGap) || parseFloat(style.gap) || 24;
+    return certCards[0].offsetWidth + gap;
+  }
+
+  // --- Helper: get the current card index from scroll position ---
+  function getCurrentIndex() {
+    const step = getScrollStep();
+    if (step === 0) return 0;
+    return Math.round(certCarousel.scrollLeft / step);
+  }
+
+  // --- Helper: get max scrollable index ---
+  function getMaxIndex() {
+    return certCards.length - 1;
+  }
+
+  // --- Create dot indicators ---
+  certCards.forEach((_, index) => {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    if (index === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      scrollToIndex(index);
+    });
+    certDotsContainer.appendChild(dot);
+  });
+
+  const dots = certDotsContainer.querySelectorAll(".dot");
+
+  // --- Update active dot + arrow visibility ---
+  function updateIndicators() {
+    const index = getCurrentIndex();
+
+    dots.forEach(d => d.classList.remove("active"));
+    if (dots[index]) dots[index].classList.add("active");
+
+    // Show/hide arrows at boundaries
+    if (certPrevBtn) {
+      certPrevBtn.style.visibility = index <= 0 ? "hidden" : "visible";
+    }
+    if (certNextBtn) {
+      const maxScroll = certCarousel.scrollWidth - certCarousel.clientWidth;
+      certNextBtn.style.visibility = certCarousel.scrollLeft >= maxScroll - 2 ? "hidden" : "visible";
+    }
+  }
+
+  // Debounced scroll listener for dot updates
+  let scrollTimer = null;
+  certCarousel.addEventListener("scroll", () => {
+    if (scrollTimer) cancelAnimationFrame(scrollTimer);
+    scrollTimer = requestAnimationFrame(updateIndicators);
+  });
+
+  // --- Programmatic smooth scroll to a specific index ---
+  function scrollToIndex(index) {
+    const step = getScrollStep();
+    const target = Math.min(index * step, certCarousel.scrollWidth - certCarousel.clientWidth);
+
+    // Temporarily disable snap so the smooth scroll isn't hijacked
+    certCarousel.style.scrollSnapType = "none";
+    certCarousel.scrollTo({ left: target, behavior: "smooth" });
+
+    // Re-enable snap after the animation settles
+    setTimeout(() => {
+      certCarousel.style.scrollSnapType = "x mandatory";
+    }, 450);
+  }
+
+  // --- Arrow navigation ---
+  if (certPrevBtn) {
+    certPrevBtn.addEventListener("click", () => {
+      const idx = getCurrentIndex();
+      if (idx > 0) scrollToIndex(idx - 1);
+    });
+  }
+
+  if (certNextBtn) {
+    certNextBtn.addEventListener("click", () => {
+      const idx = getCurrentIndex();
+      if (idx < getMaxIndex()) scrollToIndex(idx + 1);
+    });
+  }
+
+  // --- Keyboard navigation (when carousel or arrows are focused) ---
+  certCarousel.setAttribute("tabindex", "0");
+  certCarousel.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      const idx = getCurrentIndex();
+      if (idx < getMaxIndex()) scrollToIndex(idx + 1);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      const idx = getCurrentIndex();
+      if (idx > 0) scrollToIndex(idx - 1);
     }
   });
 
-  certContainer.addEventListener("mouseleave", () => {
-    scrollSpeed = 0;
+  // --- Mouse drag to scroll ---
+  let isDown = false;
+  let dragStartX = 0;
+  let dragScrollLeft = 0;
+
+  certCarousel.addEventListener("mousedown", (e) => {
+    isDown = true;
+    certCarousel.dataset.isDragging = "false";
+    certCarousel.style.scrollSnapType = "none";
+    certCarousel.style.scrollBehavior = "auto"; // instant tracking while dragging
+    dragStartX = e.pageX - certCarousel.offsetLeft;
+    dragScrollLeft = certCarousel.scrollLeft;
   });
 
-  function autoScroll() {
-    certContainer.scrollLeft += scrollSpeed;
-    requestAnimationFrame(autoScroll);
-  }
+  const endDrag = () => {
+    if (!isDown) return;
+    isDown = false;
+    certCarousel.style.scrollSnapType = "x mandatory";
+    certCarousel.style.scrollBehavior = "smooth";
+  };
 
-  autoScroll();
-}
+  certCarousel.addEventListener("mouseleave", endDrag);
+  certCarousel.addEventListener("mouseup", endDrag);
+
+  certCarousel.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - certCarousel.offsetLeft;
+    const walk = (x - dragStartX) * 1.5;
+    if (Math.abs(walk) > 5) {
+      certCarousel.dataset.isDragging = "true";
+    }
+    certCarousel.scrollLeft = dragScrollLeft - walk;
+  });
+
+  // --- Touch swipe support (mobile) ---
+  let touchStartX = 0;
+  let touchScrollLeft = 0;
+
+  certCarousel.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].pageX;
+    touchScrollLeft = certCarousel.scrollLeft;
+    certCarousel.style.scrollSnapType = "none";
+    certCarousel.dataset.isDragging = "false";
+  }, { passive: true });
+
+  certCarousel.addEventListener("touchmove", (e) => {
+    const x = e.touches[0].pageX;
+    const walk = (touchStartX - x) * 1.2;
+    if (Math.abs(walk) > 5) {
+      certCarousel.dataset.isDragging = "true";
+    }
+    certCarousel.scrollLeft = touchScrollLeft + walk;
+  }, { passive: true });
+
+  certCarousel.addEventListener("touchend", () => {
+    certCarousel.style.scrollSnapType = "x mandatory";
+  }, { passive: true });
+
+  // --- Initial state ---
+  updateIndicators();
+
+  // Recalculate on resize (card widths change at breakpoints)
+  window.addEventListener("resize", () => {
+    updateIndicators();
+  });
+})();
 
 // Certificate Modal Functionality
 const modal = document.getElementById("certModal");
 const modalImg = document.getElementById("certModalImg");
 const closeBtn = document.querySelector(".cert-close");
 
-document.querySelectorAll(".cert-img").forEach(img => {
-  img.addEventListener("click", () => {
-    modal.style.display = "block";
-    modalImg.src = img.src;
+if (modal && modalImg) {
+  document.querySelectorAll(".cert-img-container").forEach(container => {
+    container.addEventListener("click", (e) => {
+      const carousel = container.closest('.certifications-carousel');
+      if (carousel && carousel.dataset.isDragging === "true") {
+        e.preventDefault();
+        return;
+      }
+      const img = container.querySelector("img");
+      if (img) {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      }
+    });
   });
-});
 
-closeBtn.onclick = () => {
-  modal.style.display = "none";
-};
-
-modal.onclick = (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
+  if (closeBtn) {
+    closeBtn.onclick = () => {
+      modal.style.display = "none";
+    };
   }
-};
+
+  modal.onclick = (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.style.display === "block") {
+      modal.style.display = "none";
+    }
+  });
+}
 
 // Contact Form Functionality
 document
