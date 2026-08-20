@@ -384,10 +384,11 @@ if (modal && modalImg) {
 // --------------------------------------------------
 // Contact Form
 // --------------------------------------------------
-// Public HTTP endpoint that receives contact submissions.
-// Replace with the deployed Cloudflare Worker URL. This is a public
-// endpoint by design - no API keys, tokens or passwords belong in this file.
-const CONTACT_API_URL = "YOUR_CLOUDFLARE_WORKER_URL";
+// Public HTTP endpoint that receives contact submissions and forwards them
+// by email. Public by design - no API keys, tokens or passwords belong in
+// this file. The Worker allows the origin https://bhuvanshu.github.io.
+const CONTACT_API_URL =
+  "https://portfolio-contact.bhuvanshusingh.workers.dev/";
 
 (function () {
   const form = document.getElementById("contactForm");
@@ -401,6 +402,12 @@ const CONTACT_API_URL = "YOUR_CLOUDFLARE_WORKER_URL";
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const GENERIC_FAILURE =
     "Unable to send your message right now. Please try again later.";
+
+  // Mirrors the Worker's own validation, so the common mistakes are caught
+  // here instead of costing the visitor a round trip.
+  const NAME_MIN = 2;
+  const MESSAGE_MIN = 10;
+  const MESSAGE_MAX = 3000;
 
   // Guards against a second submission while one is already in flight.
   let isSending = false;
@@ -445,8 +452,8 @@ const CONTACT_API_URL = "YOUR_CLOUDFLARE_WORKER_URL";
     const message = document.getElementById("message").value.trim();
 
     // ---------- Client-side validation ----------
-    if (!name || !email || !message) {
-      setStatus("Please fill in your name, email and message.", "is-error");
+    if (name.length < NAME_MIN) {
+      setStatus("Please enter your name (at least 2 characters).", "is-error");
       return;
     }
 
@@ -455,10 +462,13 @@ const CONTACT_API_URL = "YOUR_CLOUDFLARE_WORKER_URL";
       return;
     }
 
-    // The endpoint has to be configured before anything can be sent. Fail
-    // honestly rather than reporting a success that never happened.
-    if (!CONTACT_API_URL || CONTACT_API_URL === "YOUR_CLOUDFLARE_WORKER_URL") {
-      setStatus(GENERIC_FAILURE, "is-error");
+    if (message.length < MESSAGE_MIN) {
+      setStatus("Your message must be at least 10 characters.", "is-error");
+      return;
+    }
+
+    if (message.length > MESSAGE_MAX) {
+      setStatus("Your message must be 3000 characters or fewer.", "is-error");
       return;
     }
 
@@ -472,7 +482,16 @@ const CONTACT_API_URL = "YOUR_CLOUDFLARE_WORKER_URL";
         body: JSON.stringify({ name, email, message })
       });
 
+      const payload = await res.json().catch(() => null);
+
       if (res.ok) {
+        // The Worker answers {success, message}. A 2xx that still reports
+        // success:false is a failure, not something to celebrate.
+        if (payload && payload.success === false) {
+          setStatus(readValidationMessage(payload) || GENERIC_FAILURE, "is-error");
+          return;
+        }
+
         form.reset();
         setStatus(
           "Thanks for reaching out - your message has been sent. I'll get back to you soon.",
@@ -481,17 +500,18 @@ const CONTACT_API_URL = "YOUR_CLOUDFLARE_WORKER_URL";
         return;
       }
 
-      // 4xx: surface whatever the endpoint said was wrong with the input.
+      // 4xx: surface whatever the Worker said was wrong with the input.
       if (res.status >= 400 && res.status < 500) {
-        const payload = await res.json().catch(() => null);
         setStatus(readValidationMessage(payload) || GENERIC_FAILURE, "is-error");
         return;
       }
 
       // 5xx and anything else: the request did not succeed.
+      console.error("Contact form: unexpected response", res.status);
       setStatus(GENERIC_FAILURE, "is-error");
     } catch (error) {
       // Network failure, CORS rejection, request aborted.
+      console.error("Contact form: request failed", error);
       setStatus(GENERIC_FAILURE, "is-error");
     } finally {
       setSending(false);
