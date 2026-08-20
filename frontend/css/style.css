@@ -962,6 +962,7 @@ a {
 
 .project-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
@@ -971,6 +972,7 @@ a {
   gap: 8px;
   padding: 8px 14px;
   border-radius: 8px;
+  border: 1px solid transparent;
   font-size: 0.8rem;
   font-weight: 700;
   transition: all 0.3s ease;
