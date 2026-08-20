@@ -868,6 +868,68 @@
       </div>
     </section>
 
+    <!-- Beyond Code Section -->
+    <section class="section container" id="beyond-code">
+      <div class="section-head">
+        <span class="section-tag">BEYOND THE IDE</span>
+        <h2>Beyond Code</h2>
+        <p class="bc-section-subtitle">Mountains, expeditions, leadership and experiences beyond software.</p>
+      </div>
+
+      <!-- Gallery -->
+      <div class="bc-gallery" id="bc-gallery" role="region" aria-label="Mountaineering photo gallery">
+
+        <div class="bc-gallery-layout">
+          <!-- Featured Image -->
+          <div class="bc-featured-container" id="bc-featured-container" aria-label="Featured expedition photograph — click to enlarge">
+            <img id="bc-featured-img" class="bc-featured-img" src="" alt="" decoding="async" />
+            <button class="bc-arrow bc-arrow-left" id="bc-prev" type="button" aria-label="Previous slide">
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="bc-arrow bc-arrow-right" id="bc-next" type="button" aria-label="Next slide">
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Thumbnail Strip -->
+          <div class="bc-thumbnails-wrapper">
+            <div class="bc-thumbnails" id="bc-thumbnails" role="tablist" aria-label="Gallery thumbnails">
+              <!-- Thumbnails injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Caption -->
+        <div class="bc-caption">
+          <h3 class="bc-caption-title" id="bc-caption-title"></h3>
+          <p class="bc-caption-sub" id="bc-caption-sub"></p>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="bc-dots" id="bc-dots" role="tablist" aria-label="Slide navigation">
+          <!-- Dots injected by JS -->
+        </div>
+      </div>
+
+      <!-- Context Block -->
+      <div class="bc-context">
+        <h3 class="bc-context-heading">Mountaineering & Expeditions</h3>
+        <p class="bc-context-body">
+          Beyond software, mountaineering and high-altitude expeditions are an important part of my life.
+          These experiences have shaped how I approach preparation, teamwork, responsibility, decision-making,
+          and uncertain environments.
+        </p>
+        <p class="bc-context-body bc-context-trekoryx">
+          My experience in the mountains also influences how I think about outdoor technology and some of the problems I explore through
+          <a href="https://trekoryx.com" target="_blank" rel="noopener noreferrer" class="bc-trekoryx-link">Trekoryx</a>.
+        </p>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer container">
       <p class="muted">© <span id="year"></span> Bhuvanshu Singh • Built with HTML, CSS & JS</p>
@@ -880,8 +942,32 @@
     <img class="cert-modal-content" id="certModalImg" alt="Certificate Image">
   </div>
 
+  <!-- Beyond Code Lightbox -->
+  <div class="bc-lightbox" id="bc-lightbox" role="dialog" aria-modal="true" aria-label="Full-size photograph viewer">
+    <div class="bc-lb-backdrop"></div>
+    <button class="bc-lb-close" id="bc-lb-close" type="button" aria-label="Close lightbox">&times;</button>
+    <button class="bc-lb-nav bc-lb-prev" id="bc-lb-prev" type="button" aria-label="Previous photograph">
+      <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <div class="bc-lb-content">
+      <img class="bc-lb-img" id="bc-lb-img" src="" alt="" decoding="async" />
+      <div class="bc-lb-info">
+        <span class="bc-lb-caption" id="bc-lb-caption"></span>
+        <span class="bc-lb-counter" id="bc-lb-counter"></span>
+      </div>
+    </div>
+    <button class="bc-lb-nav bc-lb-next" id="bc-lb-next" type="button" aria-label="Next photograph">
+      <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
   <script src="frontend/js/profile-hover.js?v=2.0"></script>
   <script src="frontend/js/main.js?v=2.0"></script>
+  <script src="frontend/js/beyond-code.js?v=2.0"></script>
 </body>
 
 </html>
