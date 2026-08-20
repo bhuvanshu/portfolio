@@ -381,55 +381,122 @@ if (modal && modalImg) {
   });
 }
 
-// Contact Form Functionality
-// Public HTTP endpoint for contact submissions. No secrets belong in this file.
+// --------------------------------------------------
+// Contact Form
+// --------------------------------------------------
+// Public HTTP endpoint that receives contact submissions.
+// Replace with the deployed Cloudflare Worker URL. This is a public
+// endpoint by design - no API keys, tokens or passwords belong in this file.
 const CONTACT_API_URL = "YOUR_CLOUDFLARE_WORKER_URL";
 
-document
-  .getElementById("SendBtn")
-  .addEventListener("click", sendMessage);
+(function () {
+  const form = document.getElementById("contactForm");
+  const sendBtn = document.getElementById("SendBtn");
+  const statusEl = document.getElementById("formStatus");
 
-async function sendMessage() {
+  if (!form || !sendBtn) return;
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
+  const btnLabel = sendBtn.querySelector("span");
+  const defaultLabel = btnLabel ? btnLabel.textContent : "Send Message";
+  const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const GENERIC_FAILURE =
+    "Unable to send your message right now. Please try again later.";
 
-  // ---------- Frontend validation ----------
-  if (!name || !email || !message) {
-    alert("All fields are required ❌");
-    return;
+  // Guards against a second submission while one is already in flight.
+  let isSending = false;
+
+  function setStatus(text, kind) {
+    if (!statusEl) return;
+    statusEl.textContent = text;
+    statusEl.classList.remove("is-success", "is-error");
+    if (kind) statusEl.classList.add(kind);
   }
 
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailPattern.test(email)) {
-    alert("Enter valid email format ❌");
-    return;
+  function setSending(sending) {
+    isSending = sending;
+    sendBtn.disabled = sending;
+    sendBtn.classList.toggle("is-sending", sending);
+    if (btnLabel) btnLabel.textContent = sending ? "Sending..." : defaultLabel;
   }
 
-  const data = { name, email, message };
+  // Pulls a human-readable validation message out of whatever shape the
+  // endpoint returns, without ever inventing one.
+  function readValidationMessage(payload) {
+    if (!payload) return "";
+    if (typeof payload === "string") return payload;
+    if (typeof payload.error === "string") return payload.error;
+    if (typeof payload.message === "string") return payload.message;
 
-  try {
-    const res = await fetch(CONTACT_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
+    const errors = payload.errors;
+    if (Array.isArray(errors)) {
+      return errors.filter(e => typeof e === "string").join(" ");
+    }
+    if (errors && typeof errors === "object") {
+      return Object.values(errors).filter(e => typeof e === "string").join(" ");
+    }
+    return "";
+  }
 
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      alert("Submission failed ❌\n" + (err.message || "Unknown error"));
+  async function sendMessage() {
+    if (isSending) return;
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // ---------- Client-side validation ----------
+    if (!name || !email || !message) {
+      setStatus("Please fill in your name, email and message.", "is-error");
       return;
     }
 
-    alert("Message sent successfully ✅");
-    document.getElementById("contactForm").reset();
+    if (!EMAIL_PATTERN.test(email)) {
+      setStatus("Please enter a valid email address.", "is-error");
+      return;
+    }
 
-  } catch (error) {
-    alert("Unable to send your message right now. Please try again later.");
+    // The endpoint has to be configured before anything can be sent. Fail
+    // honestly rather than reporting a success that never happened.
+    if (!CONTACT_API_URL || CONTACT_API_URL === "YOUR_CLOUDFLARE_WORKER_URL") {
+      setStatus(GENERIC_FAILURE, "is-error");
+      return;
+    }
+
+    setSending(true);
+    setStatus("Sending your message...", null);
+
+    try {
+      const res = await fetch(CONTACT_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      if (res.ok) {
+        form.reset();
+        setStatus(
+          "Thanks for reaching out - your message has been sent. I'll get back to you soon.",
+          "is-success"
+        );
+        return;
+      }
+
+      // 4xx: surface whatever the endpoint said was wrong with the input.
+      if (res.status >= 400 && res.status < 500) {
+        const payload = await res.json().catch(() => null);
+        setStatus(readValidationMessage(payload) || GENERIC_FAILURE, "is-error");
+        return;
+      }
+
+      // 5xx and anything else: the request did not succeed.
+      setStatus(GENERIC_FAILURE, "is-error");
+    } catch (error) {
+      // Network failure, CORS rejection, request aborted.
+      setStatus(GENERIC_FAILURE, "is-error");
+    } finally {
+      setSending(false);
+    }
   }
-}
 
+  sendBtn.addEventListener("click", sendMessage);
+})();

@@ -1374,6 +1374,35 @@ a {
   width: 100%;
 }
 
+/* In-flight send: button is inert and visibly busy */
+.btn-primary:disabled,
+.btn-primary.is-sending {
+  cursor: progress;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2), inset 0 0 10px rgba(59, 130, 246, 0.1);
+}
+
+/* Submission feedback. Empty until the form has something to report. */
+.form-status {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status.is-success {
+  color: #10b981;
+}
+
+.form-status.is-error {
+  color: #f87171;
+}
+
 /* Certificate Modal */
 .cert-modal {
   display: none;
