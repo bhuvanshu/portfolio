@@ -2,18 +2,6 @@
 .env
 .env.local
 .env.production
-backend/.env
-backend/application-local.properties
-backend/src/main/resources/application-local.properties
-
-# ── Java / Maven ──────────────────────────────────────────
-backend/target/
-backend/.mvn/wrapper/maven-wrapper.jar
-*.class
-*.jar
-*.war
-*.ear
-hs_err_pid*
 
 # ── IDE ───────────────────────────────────────────────────
 .idea/
@@ -33,10 +21,6 @@ desktop.ini
 # ── Logs ─────────────────────────────────────────────────
 *.log
 logs/
-backend/build_output.txt
-backend/error_log.txt
-backend/err_short.txt
-backend/err_cause.txt
 
 # ── Node (if ever added) ──────────────────────────────────
 node_modules/

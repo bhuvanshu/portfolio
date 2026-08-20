@@ -1,103 +1,58 @@
-# Bhuvanshu — Full-Stack Developer Portfolio
+# Bhuvanshu — Developer Portfolio
 
-This is a production-ready developer portfolio showcasing backend engineering systems, research projects, and deployable web applications built with **Java Spring Boot**, **MySQL**, and modern web technologies.
+A responsive personal portfolio showcasing backend engineering work, applied
+machine learning, research projects, and shipped products.
 
 ---
 
-## 🔗 Live Platforms
+## 🔗 Live Site
 
-*   **Frontend (Public Portfolio)**:https://bhuvanshu.github.io/portfolio/
-*   **Backend API**: Deployed via Railway Cloud Infrastructure
-*   **Admin Panel**: Secured dashboard for managing contact submissions
+* **Portfolio**: https://bhuvanshu.github.io/portfolio/
 
 ---
 
 ## 📌 Overview
 
-This portfolio is a complete full-stack system including:
-*   **Responsive Frontend**: Optimized for all devices with Dark/Light mode support.
-*   **REST API Backend**: Built with Spring Boot for high-performance data handling.
-*   **Cloud-hosted Database**: Managed MySQL instance on Railway.
-*   **Admin Console**: Secured dashboard with role-specific data access.
-*   **Secure Pipeline**: Environment-based secret management and header-based authentication.
+A static, dependency-free front end built with plain HTML, CSS and JavaScript:
 
----
-
-## 🏗 System Architecture
-
-```
-User → Frontend UI → REST API → Database
-                     ↓
-                Admin Console
-```
-
-Contact form submissions are processed via backend APIs and persist in the managed MySQL cloud database.
+* **Responsive Layout**: Optimised for desktop, tablet and mobile.
+* **Dark Cyber Theme**: Animated galaxy canvas background and glassmorphism cards.
+* **Certification Gallery**: Swipeable carousel with a full-size image viewer.
+* **Contact Form**: Submits to a standalone HTTP endpoint (no secrets in the client).
 
 ---
 
 ## 🛠 Tech Stack
 
-### Frontend
-*   HTML5, CSS3, JavaScript
-*   Responsive Grid Layout
-*   Dark/Light Theme Toggle (Circular Icon UI)
-*   Animated Galaxy Canvas Background
-
-### Backend
-*   **Java 17 (LTS)**
-*   **Spring Boot 3.4.x**
-*   Spring Web (RESTful Controllers)
-*   Spring Data JPA (Hibernate)
-
-### Database
-*   MySQL (Remote Cloud Instance)
-*   HikariCP Connection Pooling
-
-### Admin & Security
-*   Admin Console Dashboard
-*   `X-ADMIN-KEY` Header-based Protection
-*   REST API CORS Restrictions
-
----
-
-## ✨ Key Features
-
-*   ✅ **Real-time Persistence**: Submissions saved directly to MySQL.
-*   ✅ **Admin Console**: Professional interface to view and manage leads.
-*   ✅ **Modern UI**: Clean, responsive design with smooth micro-interactions.
-*   ✅ **Certification Gallery**: Dynamic display of technical credentials.
-*   ✅ **Deployment Ready**: Fully configured for Railway & GitHub Pages.
+* HTML5, CSS3, JavaScript (no build step, no framework)
+* CSS Grid + Flexbox responsive layout
+* Canvas 2D particle background
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-Portfolio/
-├── admin/        → Admin Console Dashboard
-├── backend/      → Spring Boot REST API
-├── frontend/     → CSS, JS, and Assets
-├── index.html    → Main Entry Point
-└── Procfile      → Cloud Deployment Config
+portfolio/
+├── frontend/
+│   ├── assets/    → images, icons, certificates, résumé
+│   ├── css/       → style.css
+│   └── js/        → main.js, profile-hover.js
+├── index.html     → single-page entry point
+└── README.md
 ```
 
 ---
 
 ## 🚀 Deployment
 
-| Layer    | Platform                |
-| -------- | ----------------------- |
-| Frontend | GitHub Pages            |
-| Backend  | Railway (Container)     |
-| Database | Managed MySQL (Railway) |
+| Layer        | Platform                  |
+| ------------ | ------------------------- |
+| Static site  | GitHub Pages              |
+| Contact API  | Cloudflare Worker (HTTP)  |
 
----
-
-## 🔐 Security Notes
-
-*   Sensitive credentials (DB, Mail, Admin Key) are handled via environment variables.
-*   Public API endpoints are validated using Jakarta Validation bits.
-*   Admin data retrieval is protected by mandatory secret header verification.
+The contact form posts JSON (`name`, `email`, `message`) to a public Worker
+endpoint. No API keys, tokens or credentials are stored in this repository.
 
 ---
 

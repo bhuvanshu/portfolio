@@ -354,49 +354,6 @@ a {
   color: var(--accent);
 }
 
-.btn-admin-console {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  background: rgba(236, 72, 153, 0.05);
-  border: 1px solid rgba(236, 72, 153, 0.25);
-  color: var(--accent-secondary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  white-space: nowrap;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-admin-console::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.08), transparent);
-  transition: left 0.5s ease;
-}
-
-.btn-admin-console:hover::before {
-  left: 100%;
-}
-
-.btn-admin-console:hover {
-  border-color: var(--accent-secondary);
-  background: rgba(236, 72, 153, 0.1);
-  box-shadow: 0 0 20px rgba(236, 72, 153, 0.15), inset 0 0 10px rgba(236, 72, 153, 0.05);
-  transform: translateY(-1px);
-}
-
 .sidebar-socials {
   display: flex;
   justify-content: center;
@@ -672,10 +629,11 @@ a {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 12px;
-  padding: 14px 22px;
+  padding: 12px 18px;
   display: flex;
   flex-direction: column;
   gap: 2px;
+  max-width: 92%;
   z-index: 3;
   box-shadow: var(--shadow);
   animation: float 5s ease-in-out infinite;
@@ -694,8 +652,9 @@ a {
 
 .badge-title {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 800;
+  line-height: 1.25;
   color: #ffffff;
 }
 

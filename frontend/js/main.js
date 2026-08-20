@@ -382,6 +382,9 @@ if (modal && modalImg) {
 }
 
 // Contact Form Functionality
+// Public HTTP endpoint for contact submissions. No secrets belong in this file.
+const CONTACT_API_URL = "YOUR_CLOUDFLARE_WORKER_URL";
+
 document
   .getElementById("SendBtn")
   .addEventListener("click", sendMessage);
@@ -408,8 +411,7 @@ async function sendMessage() {
   const data = { name, email, message };
 
   try {
-    const API_BASE_URL = 'https://portfolio-production-557c.up.railway.app/api/contact';
-    const res = await fetch(API_BASE_URL, {
+    const res = await fetch(CONTACT_API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -418,7 +420,7 @@ async function sendMessage() {
     });
 
     if (!res.ok) {
-      const err = await res.json();
+      const err = await res.json().catch(() => ({}));
       alert("Submission failed ❌\n" + (err.message || "Unknown error"));
       return;
     }
@@ -427,8 +429,7 @@ async function sendMessage() {
     document.getElementById("contactForm").reset();
 
   } catch (error) {
-    console.error("Submission error:", error);
-    alert(`Backend not reachable ❌\n\nDetails: ${error.message}\nCheck console for more info.`);
+    alert("Unable to send your message right now. Please try again later.");
   }
 }
 
