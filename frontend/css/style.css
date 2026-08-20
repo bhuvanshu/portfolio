@@ -862,6 +862,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
@@ -877,6 +878,8 @@ a {
   padding: 4px 10px;
   border-radius: 20px;
   border: 1px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .status-process {
@@ -889,6 +892,12 @@ a {
   background: rgba(16, 185, 129, 0.1);
   border-color: rgba(16, 185, 129, 0.2);
   color: #10b981;
+}
+
+.status-applied {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.25);
+  color: var(--accent);
 }
 
 .project-desc {
@@ -925,6 +934,13 @@ a {
 
 .publication-btn:hover {
   color: var(--accent);
+}
+
+.publication-btn.is-locked,
+.publication-btn.is-locked:hover {
+  display: block;
+  color: var(--muted);
+  cursor: not-allowed;
 }
 
 .project-tech {
@@ -979,6 +995,22 @@ a {
 .btn-project-link.primary:hover {
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   filter: brightness(1.1);
+}
+
+/* Reusable locked / unavailable CTA.
+   Rendered as a non-anchor element, so there is nothing to navigate to. */
+.btn-project-link.is-locked,
+.btn-project-link.is-locked:hover,
+.btn-project-link.is-locked:focus {
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+  filter: none;
+  transform: none;
+  user-select: none;
 }
 
 /* --------------------------------------------------
@@ -1532,6 +1564,13 @@ a {
 @media (max-width: 600px) {
   .hero-title {
     font-size: 2.2rem;
+  }
+
+  /* Stack the card header so long titles keep the full card width */
+  .project-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 
   .skills-grid {
